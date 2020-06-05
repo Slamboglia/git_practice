@@ -18,8 +18,9 @@ def decoder(message, offset):
     return ''.join(newdecodedlist)
   
 print(decoder(Vmessage, 10))
-    
+
 def coder(messag, offset):
+    #^ ran into a little snafu here with the casing, and this was the fastest way to not have to rewrite code
     message = messag.lower()
     newdecodedlist = []
     AlphaDecoded = list(decoder(alphalist, 10))
