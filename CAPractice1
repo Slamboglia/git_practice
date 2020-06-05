@@ -1,51 +1,40 @@
-Alpha = 'abcdefghijklmnopqrstuvwxyz'
+Alpha = 'zyxwvutsrqponmlkjihgfedcba'
+alphacorrect = 'abcdefghijklmnopqrstuvwxyz'
 alphalist = list(Alpha)
+alphaCL = list(alphacorrect)
 print(alphalist)
-message = "xuo jxuhu! jxyi yi qd unqcfbu ev q squiqh syfxuh. muhu oek qrbu je tusetu yj? y xefu ie! iudt cu q cuiiqwu rqsa myjx jxu iqcu evviuj!"
-#testing this. Want to change message into a list maybe?
-def decoder(message):
-    decoded = ''
+print(alphaCL)
+Vmessage = "xuo jxuhu! jxyi yi qd unqcfbu ev q squiqh syfxuh. muhu oek qrbu je tusetu yj? y xefu ie! iudt cu q cuiiqwu rqsa myjx jxu iqcu evviuj!"
+message = "Eat a dick, fucko."
+def decoder(message, offset):
     newdecodedlist = []
-    plist = [0] * len(message)
-    mlist = list(message)
-    print(mlist)
-    for letter in message:
-        if letter.isalpha():
-            for let in alphalist:
-                replacer = message.index(letter)
-                if let == letter:
-                    plist[replacer] = alphalist.index(let)
-                else:
-                    plist[replacer] = letter
-#FIX THIS ^ Doesnt Work!
-    print(newdecodedlist)
-    print(plist)
-
-decoder(message)
-
-
-Version 2~
-
-Alpha = 'abcdefghijklmnopqrstuvwxyz'
-alphalist = list(Alpha)
-print(alphalist)
-message = "xuo jxuhu! jxyi yi qd unqcfbu ev q squiqh syfxuh. muhu oek qrbu je tusetu yj? y xefu ie! iudt cu q cuiiqwu rqsa myjx jxu iqcu evviuj!"
-#testing this. Want to change message into a list maybe?
-def decoder(message):
-    decoded = ''
+    for letter in range(len(message)):
+        lette = message[letter]
+        if lette.isalpha():
+            if lette in alphalist:
+                newdecodedlist.append(alphalist[alphalist.index(lette) - offset])
+        elif lette.isalpha() == False:
+            newdecodedlist.append(message[message.index(lette)])
+    return ''.join(newdecodedlist)
+  
+print(decoder(Vmessage, 10))
+    
+def coder(messag, offset):
+    message = messag.lower()
     newdecodedlist = []
-    plist = [0] * len(message)
-    mlist = list(message)
-    print(mlist)
-    for letter in message:
-            if letter.isalpha():
-                if letter in alphalist:
-                    newdecodedlist.append(alphalist.index(letter))# = alphalist.index(letter)
-            elif letter.isalpha() == False:
-                newdecodedlist.append(message[message.index(letter)])
+    AlphaDecoded = list(decoder(alphalist, 10))
+    for letter in range(len(message)):
+        lette = message[letter]
+        if lette.isalpha():
+            if lette in AlphaDecoded:
+                newdecodedlist.append(AlphaDecoded[(AlphaDecoded.index(lette) + offset) % 26])
+        elif lette.isalpha() == False:
+            newdecodedlist.append(message[message.index(lette)])
+    return ''.join(newdecodedlist)
+
+print(decoder(coder(message, 10),10))
 
 
-    print(newdecodedlist)
-   # print(plist)
+NuMessage = "vhfinmxkl atox kxgwxkxw tee hy maxlx hew vbiaxkl tl hulhexmx. px'ee atox mh kxteer lmxi ni hnk ztfx by px ptgm mh dxxi hnk fxlltzxl ltyx."
 
-decoder(message)
+print(decoder(NuMessage, 7))
