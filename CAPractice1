@@ -26,6 +26,7 @@ def coder(messag, offset):
     AlphaDecoded = list(decoder(alphalist, 10))
     for letter in range(len(message)):
         lette = message[letter]
+        #also got lazy here when i had to change the list to range(len()). Whoops
         if lette.isalpha():
             if lette in AlphaDecoded:
                 newdecodedlist.append(AlphaDecoded[(AlphaDecoded.index(lette) + offset) % 26])
