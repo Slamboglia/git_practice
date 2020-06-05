@@ -23,10 +23,9 @@ def coder(messag, offset):
     #^ ran into a little snafu here with the casing, and this was the fastest way to not have to rewrite code
     message = messag.lower()
     newdecodedlist = []
-    AlphaDecoded = list(decoder(alphalist, 10))
+    AlphaDecoded = list(decoder(alphalist, offset))
     for letter in range(len(message)):
         lette = message[letter]
-        #also got lazy here when i had to change the list to range(len()). Whoops
         if lette.isalpha():
             if lette in AlphaDecoded:
                 newdecodedlist.append(AlphaDecoded[(AlphaDecoded.index(lette) + offset) % 26])
@@ -40,3 +39,4 @@ print(decoder(coder(message, 10),10))
 NuMessage = "vhfinmxkl atox kxgwxkxw tee hy maxlx hew vbiaxkl tl hulhexmx. px'ee atox mh kxteer lmxi ni hnk ztfx by px ptgm mh dxxi hnk fxlltzxl ltyx."
 
 print(decoder(NuMessage, 7))
+print(coder(decoder(NuMessage, 7),7))
