@@ -1,0 +1,24 @@
+Alpha = 'abcdefghijklmnopqrstuvwxyz'
+alphalist = list(Alpha)
+print(alphalist)
+message = "xuo jxuhu! jxyi yi qd unqcfbu ev q squiqh syfxuh. muhu oek qrbu je tusetu yj? y xefu ie! iudt cu q cuiiqwu rqsa myjx jxu iqcu evviuj!"
+#testing this. Want to change message into a list maybe?
+def decoder(message):
+    decoded = ''
+    newdecodedlist = []
+    plist = [0] * len(message)
+    mlist = list(message)
+    print(mlist)
+    for letter in message:
+        if letter.isalpha():
+            for let in alphalist:
+                replacer = message.index(letter)
+                if let == letter:
+                    plist[replacer] = alphalist.index(let)
+                else:
+                    plist[replacer] = letter
+#FIX THIS ^ Doesnt Work!
+    print(newdecodedlist)
+    print(plist)
+
+decoder(message)
