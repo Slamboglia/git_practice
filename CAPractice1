@@ -1,7 +1,9 @@
-Alpha = 'zyxwvutsrqponmlkjihgfedcba'
-alphalist = list(Alpha)
+alpha = 'zyxwvutsrqponmlkjihgfedcba'
+alphacorrect = 'abcdefghijklmnopqrstuvwxyz'
+alphalist = list(alpha)
+alphaCL = list(alphacorrect)
 print(alphalist)
-#^ for personal reference
+print(alphaCL)
 Vmessage = "xuo jxuhu! jxyi yi qd unqcfbu ev q squiqh syfxuh. muhu oek qrbu je tusetu yj? y xefu ie! iudt cu q cuiiqwu rqsa myjx jxu iqcu evviuj!"
 message = "Eat a dick, fucko."
 def decoder(message, offset):
@@ -15,7 +17,7 @@ def decoder(message, offset):
             newdecodedlist.append(message[message.index(lette)])
     return ''.join(newdecodedlist)
   
-print(decoder(Vmessage, 10))
+
 
 def coder(messag, offset):
     #^ ran into a little snafu here with the casing, and this was the fastest way to not have to rewrite code
@@ -31,10 +33,40 @@ def coder(messag, offset):
             newdecodedlist.append(message[message.index(lette)])
     return ''.join(newdecodedlist)
 
-print(decoder(coder(message, 10),10))
-
 
 NuMessage = "vhfinmxkl atox kxgwxkxw tee hy maxlx hew vbiaxkl tl hulhexmx. px'ee atox mh kxteer lmxi ni hnk ztfx by px ptgm mh dxxi hnk fxlltzxl ltyx."
 
-print(decoder(NuMessage, 7))
-print(coder(decoder(NuMessage, 7),7))
+S5Message = "dfc aruw fsti gr vjtwhr wznj? vmph otis! cbx swv jipreneo uhllj kpi rahjib eg fjdkwkedhmp!"
+
+def VDcoder(message, keyword):
+    decodedmessage = []
+    loopingvalue = 0
+    for index in range(len(message)):
+        if message[index].isalpha():
+            if loopingvalue == len(keyword):
+                loopingvalue = 0
+            decodedindex = alpha.index(message[index]) - alpha.index(keyword[loopingvalue])
+            decodedmessage.append(alpha[decodedindex % 26 - 1])
+            loopingvalue += 1
+        else:
+            decodedmessage.append(message[index])
+    return ''.join(decodedmessage)
+    
+def VCoder(message, keyword):
+    codedmessage = []
+    loopingvalue = 0
+    messagelower = message.lower()
+    for index in range(len(message)):
+        if message[index].isalpha():
+            if loopingvalue == len(keyword):
+                loopingvalue = 0
+            codedindex = alpha.index(messagelower[index]) + alpha.index(keyword[loopingvalue])
+            codedmessage.append(alpha[codedindex % 26 + 1])
+            loopingvalue += 1
+        else:
+            codedmessage.append(message[index])
+    return ''.join(codedmessage)
+    
+print(VDcoder(S5Message,"friends"))
+print(VCoder(message, 'fuck'))
+print(VDcoder((VCoder(message, 'fuck')),"fuck"))
